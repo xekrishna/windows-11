@@ -1,23 +1,33 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { lockWallpaper } from "@/public/images";
-import { useEffect, useState } from "react";
+import LoginPage from "./LoginPage";
 
 const Lock = () => {
   const [time, setTime] = useState(new Date());
+  const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
     }, 1000);
 
+    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
+  // Function to open the login component
+  const openLogin = () => setShowLogin(true);
+
+  // Function to close the login component
+  const closeLogin = () => setShowLogin(false);
+
   return (
     <>
-      <div>
+      <div onClick={openLogin}>
         <Image
           src={lockWallpaper}
           alt="wallpaper"
@@ -41,6 +51,20 @@ const Lock = () => {
           })}
         </div>
       </div>
+
+      <AnimatePresence>
+        {showLogin && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg"
+          >
+            <LoginPage onClose={closeLogin} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
