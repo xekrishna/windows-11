@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className="w-full h-[3.75rem]  gap-1 z-50 grid grid-cols-10 p-1 ">
       <div className="col-span-2"></div>
       <div className="col-span-6  flex items-center justify-center">
-        <div className="w-max h-12 bg-black/30 rounded-lg flex justify-center items-center  p-1 backdrop-blur-sm">
+        <div className="w-max h-12 bg-black/30 rounded-lg flex justify-center items-center  p-1 backdrop-blur-sm gap-1">
           {/**Start */}
           <div>
             <Start />
