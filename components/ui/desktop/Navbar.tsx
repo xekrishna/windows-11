@@ -17,12 +17,12 @@ const Navbar = () => {
   const time = useCurrentTime();
 
   return (
-    <div className="w-full h-[3.75rem]  gap-1 z-50 grid grid-cols-10 px-3 p-1 ">
+    <div className="w-full h-[3.75rem]  gap-1 z-50 grid grid-cols-10 p-1 ">
       <div className="col-span-2"></div>
       <div className="col-span-6  flex items-center justify-center">
         <div className="w-max h-12 bg-black/30 rounded-lg flex justify-center items-center  p-1 backdrop-blur-sm">
           {/**Start */}
-          <div className="p-1 hover:bg-white/20 rounded-md">
+          <div>
             <Start />
           </div>
           {/**Search */}
@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-2 col-span-2 ">
+      <div className="flex justify-end items-center gap-2 col-span-2 px-2 ">
         <div className="flex items-center justify-center  backdrop-blur-sm bg-black/30 gap-4 h-full p-3 rounded-lg">
           <div className="flex justify-center items-center">
             <BiWifi />

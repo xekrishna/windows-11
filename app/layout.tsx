@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 const segoeUI = localFont({
   src: "./fonts/SegoeUIVF.ttf",
   variable: "--font-segoe",
   weight: "100 900",
+});
+
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${segoeUI.variable}  antialiased`}
+        className={`${poppins.variable}  antialiased`}
       >
         {children}
       </body>
