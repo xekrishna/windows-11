@@ -1,7 +1,7 @@
 import { User } from "@/lib/data";
 import { Variants, motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import {
   BsArrowLeft,
@@ -11,11 +11,16 @@ import {
   BsWifi,
 } from "react-icons/bs";
 
-const LoginPage = ({ onClose }) => {
+// Define the types for the props
+interface LoginPageProps {
+  onClose: () => void;
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ onClose }) => {
   const iconProps = "text-xl hover:bg-black/20 transition-all p-2 rounded-full";
-  const [password, setPassword] = useState("");
-  const [pinError, setPinError] = useState(false);
-  const [isPowerOpen, setIsPowerOpen] = useState(false);
+  const [password, setPassword] = useState<string>("");
+  const [pinError, setPinError] = useState<boolean>(false);
+  const [isPowerOpen, setIsPowerOpen] = useState<boolean>(false);
   const router = useRouter();
 
   const itemVariants: Variants = {
@@ -37,7 +42,7 @@ const LoginPage = ({ onClose }) => {
     },
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const enteredPassword = e.target.value;
     setPassword(enteredPassword);
 
@@ -88,7 +93,7 @@ const LoginPage = ({ onClose }) => {
           onChange={handleChange}
           {...(pinError ? shakeAnimation : {})} // Apply shake animation on error
         />
-        <span onClick={() => alert("Passowrd is 1234")}>I forgot my PIN</span>
+        <span onClick={() => alert("Password is 1234")}>I forgot my PIN</span>
       </div>
 
       {/* Bottom Menu */}

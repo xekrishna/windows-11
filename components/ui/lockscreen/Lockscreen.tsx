@@ -1,23 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { lockWallpaper } from "@/public/images";
+import { lockWallpaper, wallpaper } from "@/public/images";
 import LoginPage from "./LoginPage";
+import useCurrentTime from "@/hooks/useDate";
 
 const Lock = () => {
-  const [time, setTime] = useState(new Date());
   const [showLogin, setShowLogin] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    // Clean up interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
+  const time = useCurrentTime();
 
   // Function to open the login component
   const openLogin = () => setShowLogin(true);
@@ -29,7 +22,7 @@ const Lock = () => {
     <>
       <div onClick={openLogin}>
         <Image
-          src={lockWallpaper}
+          src={wallpaper}
           alt="wallpaper"
           className="w-full h-full absolute -z-50"
         />
